@@ -1,3 +1,7 @@
+'''
+    This is the server of an 
+    emotion detection web application
+'''
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -6,6 +10,9 @@ app = Flask("Sentiment Analyzer")
 
 @app.route("/emotionDetector")
 def sent_text():
+    '''
+        Retrieves emotion score from api server
+    '''
     text_to_analyze = request.args.get('textToAnalyze')
     em_scores = emotion_detector(text_to_analyze)
     dominant_emotion = em_scores["dominant_emotion"]
