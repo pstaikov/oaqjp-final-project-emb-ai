@@ -9,6 +9,8 @@ def sent_text():
     text_to_analyze = request.args.get('textToAnalyze')
     em_scores = emotion_detector(text_to_analyze)
     dominant_emotion = em_scores["dominant_emotion"]
+    if not dominant_emotion:
+        return "Ivalid text! Please try again!"
     em_scores.pop("dominant_emotion", None)
     return "For the given statement, the sistem response is " + \
         f"'anger': {em_scores['anger']}, " + \
